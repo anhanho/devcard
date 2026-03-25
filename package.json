@@ -1,6 +1,6 @@
 {
   "name": "devduel",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Developer trading cards generated from your GitHub profile. Compare stats, discover your type, duel friends.",
   "type": "module",
   "bin": {

@@ -1,39 +1,72 @@
 import type { DevStats } from "../types/index.js";
 
+const W = 48;
+
 export function renderCard(stats: DevStats): void {
-  const w = 44; // inner width
   const bar = (val: number) => {
     const filled = Math.round(val / 10);
-    return "█".repeat(filled) + "░".repeat(10 - filled);
+    return "\u2588".repeat(filled) + "\u2591".repeat(10 - filled);
   };
-  const pad = (s: string, len: number) => s + " ".repeat(Math.max(0, len - s.length));
-  const rpad = (s: string, len: number) => " ".repeat(Math.max(0, len - s.length)) + s;
-  const line = (content: string) => `║  ${pad(content, w)}║`;
-  const empty = line("");
 
-  const langs = stats.topLanguages.slice(0, 3).map((l) => l.name).join(" · ");
+  const langs = stats.topLanguages.slice(0, 3).map((l) => l.name).join(" \u00b7 ");
 
   const lines = [
-    `╔${"═".repeat(w + 2)}╗`,
-    `║  ${pad(stats.title, w - 6)}${rpad(`LV.${stats.level}`, 6)}  ║`,
-    empty,
-    line(stats.username),
-    line(`"${stats.personality}"`),
-    empty,
-    line(langs),
-    empty,
-    line(`ATK ${bar(stats.scores.atk)}  ${rpad(String(stats.scores.atk), 3)}   (${fmt(stats.totalStars)} ★)`),
-    line(`DEF ${bar(stats.scores.def)}  ${rpad(String(stats.scores.def), 3)}   (${fmt(stats.totalForks)} forks)`),
-    line(`SPD ${bar(stats.scores.spd)}  ${rpad(String(stats.scores.spd), 3)}   (${stats.totalRepos} repos)`),
-    line(`INT ${bar(stats.scores.int)}  ${rpad(String(stats.scores.int), 3)}   (${stats.topLanguages.length} langs)`),
-    empty,
-    line(`✦ ${fmt(stats.followers)} followers  ✦ ${fmt(stats.totalStars)} stars`),
-    empty,
-    `║  ${pad("", w - 14)}devcard v0.1.0  ║`,
-    `╚${"═".repeat(w + 2)}╝`,
+    top(),
+    row(`${stats.title}${sp(W - vw(stats.title) - vw(`LV.${stats.level}`))}LV.${stats.level}`),
+    row(""),
+    row(stats.username),
+    row(`"${stats.personality}"`),
+    row(""),
+    row(langs),
+    row(""),
+    row(`ATK ${bar(stats.scores.atk)}  ${rp(String(stats.scores.atk), 3)}   (${fmt(stats.totalStars)} stars)`),
+    row(`DEF ${bar(stats.scores.def)}  ${rp(String(stats.scores.def), 3)}   (${fmt(stats.totalForks)} forks)`),
+    row(`SPD ${bar(stats.scores.spd)}  ${rp(String(stats.scores.spd), 3)}   (${stats.totalRepos} repos)`),
+    row(`INT ${bar(stats.scores.int)}  ${rp(String(stats.scores.int), 3)}   (${stats.topLanguages.length} langs)`),
+    row(""),
+    row(`${fmt(stats.followers)} followers  |  ${fmt(stats.totalStars)} stars`),
+    row(""),
+    row(`${sp(W - vw("devduel v0.1.0"))}devduel v0.1.0`),
+    bot(),
   ];
 
   console.log(lines.join("\n"));
+}
+
+function top(): string {
+  return `\u2554${"═".repeat(W + 2)}\u2557`;
+}
+
+function bot(): string {
+  return `\u255a${"═".repeat(W + 2)}\u255d`;
+}
+
+function row(content: string): string {
+  const padding = W - vw(content);
+  return `\u2551 ${content}${sp(padding)} \u2551`;
+}
+
+function sp(n: number): string {
+  return " ".repeat(Math.max(0, n));
+}
+
+function rp(s: string, len: number): string {
+  return sp(len - s.length) + s;
+}
+
+function vw(s: string): number {
+  let width = 0;
+  for (const ch of s) {
+    const code = ch.codePointAt(0) ?? 0;
+    if (code > 0xffff) {
+      width += 2;
+    } else if (code === 0xfe0f) {
+      continue;
+    } else {
+      width += 1;
+    }
+  }
+  return width;
 }
 
 function fmt(n: number): string {
