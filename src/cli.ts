@@ -4,19 +4,19 @@ import { renderCard } from "./lib/render.js";
 import { renderDuel } from "./lib/duel.js";
 
 const HELP = `
-devcard — Developer Trading Cards from GitHub
+devduel — Developer Trading Cards from GitHub
 
 Usage:
-  devcard <username>              Generate your card
-  devcard <user1> vs <user2>     Duel two developers
+  devduel <username>              Generate your card
+  devduel <user1> vs <user2>     Duel two developers
 
 Options:
   -h, --help       Show this help
   -v, --version    Show version
 
 Examples:
-  npx devcard anhanho
-  npx devcard anhanho vs torvalds
+  npx devduel torvalds
+  npx devduel torvalds vs sindresorhus
 `;
 
 async function main(): Promise<void> {
@@ -28,7 +28,7 @@ async function main(): Promise<void> {
   }
 
   if (args.includes("-v") || args.includes("--version")) {
-    console.log("devcard v0.1.0");
+    console.log("devduel v0.1.0");
     return;
   }
 
@@ -38,7 +38,7 @@ async function main(): Promise<void> {
     const user1 = args[vsIndex - 1];
     const user2 = args[vsIndex + 1];
     if (!user1 || !user2) {
-      console.error("Usage: devcard <user1> vs <user2>");
+      console.error("Usage: devduel <user1> vs <user2>");
       process.exit(1);
     }
     console.log(`\n  ⚔️  Loading duel: ${user1} vs ${user2}...\n`);
@@ -50,7 +50,7 @@ async function main(): Promise<void> {
   } else {
     const username = args[0];
     if (!username) {
-      console.error("Usage: devcard <username>");
+      console.error("Usage: devduel <username>");
       process.exit(1);
     }
     console.log(`\n  🃏  Loading card for ${username}...\n`);

@@ -1,10 +1,10 @@
-# devcard
+# devduel
 
-Developer trading cards generated from your GitHub profile.
+Developer trading cards generated from your GitHub profile. Compare stats, discover your type, duel friends.
 
 ```bash
-npx devcard anhanho
-npx devcard anhanho vs torvalds
+npx devduel torvalds
+npx devduel torvalds vs sindresorhus
 ```
 
 ## What It Does
@@ -15,19 +15,19 @@ Point it at any GitHub username. It fetches your public profile and repos, calcu
 ╔══════════════════════════════════════════════╗
 ║  ★★★★☆ Epic                         LV.67  ║
 ║                                              ║
-║  anhanho                                     ║
-║  "The Type Guardian"                         ║
+║  torvalds                                    ║
+║  "The Relentless Shipper"                    ║
 ║                                              ║
-║  TypeScript · React · Node.js                ║
+║  C · C++ · Shell                             ║
 ║                                              ║
-║  ATK ████████░░   82   (1.2k ★)             ║
-║  DEF ██████░░░░   61   (89 forks)           ║
-║  SPD █████████░   91   (47 repos)           ║
-║  INT ███████░░░   73   (4 langs)            ║
+║  ATK ██████████  100   (198k ★)              ║
+║  DEF ██████████  100   (52k forks)           ║
+║  SPD ████████░░   84   (8 repos)             ║
+║  INT ██████░░░░   55   (3 langs)             ║
 ║                                              ║
-║  ✦ 127 followers  ✦ 1.2k stars              ║
+║  ✦ 238k followers  ✦ 198k stars              ║
 ║                                              ║
-║                              devcard v0.1.0  ║
+║                             devduel v0.1.0   ║
 ╚══════════════════════════════════════════════╝
 ```
 
@@ -36,23 +36,23 @@ Point it at any GitHub username. It fetches your public profile and repos, calcu
 Compare two developers side by side.
 
 ```bash
-npx devcard anhanho vs torvalds
+npx devduel torvalds vs sindresorhus
 ```
 
 ```
 ╔══════════════════════ VS ══════════════════════╗
 ║                                                ║
-║  anhanho              ⚔️     torvalds          ║
-║  LV.42                       LV.99            ║
-║  "The Type Guardian"         "The Relentless  ║
-║                               Shipper"        ║
+║  torvalds              ⚔️     sindresorhus     ║
+║  LV.83                        LV.79            ║
+║  "The Relentless Shipper"     "The Type        ║
+║                                Guardian"        ║
 ║                                                ║
-║  ATK    1  ◄────  100  ATK ✓                  ║
-║  DEF    0  ◄────  100  DEF ✓                  ║
-║  SPD   81  ◄────   84  SPD ✓                  ║
-║  INT   23  ◄────   55  INT ✓                  ║
+║  ATK ✓ 100  ────►   95  ATK                   ║
+║  DEF ✓ 100  ────►   88  DEF                   ║
+║  SPD    84  ◄────   92  SPD ✓                  ║
+║  INT    55  ◄────   90  INT ✓                  ║
 ║                                                ║
-║  Winner: torvalds                              ║
+║  Winner: DRAW                                  ║
 ║                                                ║
 ╚════════════════════════════════════════════════╝
 ```
@@ -80,7 +80,18 @@ npx devcard anhanho vs torvalds
 | The Gopher | Primary language: Go |
 | The Enterprise Warrior | Primary language: Java |
 | The Frontend Wizard | Primary language: JavaScript |
-| ...and 12 more | |
+| The Bare Metal Hacker | Primary language: C |
+| The Performance Purist | Primary language: C++ |
+| The Apple Artisan | Primary language: Swift |
+| The Android Knight | Primary language: Kotlin |
+| The Rails Rider | Primary language: Ruby |
+| The Web Survivor | Primary language: PHP |
+| The Speed Demon | SPD ≥ 90 |
+| The Language Collector | INT ≥ 90 |
+| The Star Farmer | ATK ≥ 90 |
+| The Community Pillar | DEF ≥ 90 |
+| The Silent Observer | ATK < 30 and SPD < 30 |
+| The Versatile Coder | Default |
 
 ## Title Tiers
 
@@ -95,13 +106,13 @@ npx devcard anhanho vs torvalds
 ## Install
 
 ```bash
-npm install -g devcard
+npm install -g devduel
 ```
 
 Or run without installing:
 
 ```bash
-npx devcard <username>
+npx devduel <username>
 ```
 
 ## Rate Limits
@@ -110,7 +121,7 @@ GitHub allows 60 API requests/hour without authentication. For heavy use, set a 
 
 ```bash
 export GITHUB_TOKEN=ghp_your_token_here
-npx devcard anhanho
+npx devduel torvalds
 ```
 
 ## Development
@@ -119,7 +130,7 @@ npx devcard anhanho
 git clone https://github.com/anhanho/devcard
 cd devcard
 npm install
-npm run dev -- anhanho
+npm run dev -- torvalds
 npm run build
 npm run lint
 ```

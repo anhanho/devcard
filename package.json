@@ -1,10 +1,10 @@
 {
-  "name": "devcard",
+  "name": "devduel",
   "version": "0.1.0",
   "description": "Developer trading cards generated from your GitHub profile. Compare stats, discover your type, duel friends.",
   "type": "module",
   "bin": {
-    "devcard": "./dist/cli.js"
+    "devduel": "dist/cli.js"
   },
   "scripts": {
     "build": "esbuild src/cli.ts --bundle --platform=node --target=node20 --format=esm --outfile=dist/cli.js --banner:js='#!/usr/bin/env node'",
