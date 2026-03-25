@@ -1,0 +1,43 @@
+{
+  "name": "devcard",
+  "version": "0.1.0",
+  "description": "Developer trading cards generated from your GitHub profile. Compare stats, discover your type, duel friends.",
+  "type": "module",
+  "bin": {
+    "devcard": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "esbuild src/cli.ts --bundle --platform=node --target=node20 --format=esm --outfile=dist/cli.js --banner:js='#!/usr/bin/env node'",
+    "dev": "tsx src/cli.ts",
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "github",
+    "developer",
+    "card",
+    "profile",
+    "stats",
+    "trading-card",
+    "duel",
+    "cli",
+    "badge",
+    "readme"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0",
+    "@types/node": "^22.0.0"
+  }
+}
